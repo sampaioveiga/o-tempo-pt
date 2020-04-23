@@ -1,0 +1,17 @@
+{
+  "name": "ipma",
+  "displayName": "ipma",
+  "expo": {
+    "name": "ipma",
+    "slug": "ipma",
+    "version": "1.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
