@@ -6,8 +6,8 @@ export const fetchWeather = async globalIdLocal => {
     
   return {
     dataUpdate: dataUpdate,
-    todayForecast: data[0],
-    tomorrowForecast: data[1],
-    afterTomorrowForecast: data[2],
+    todayData: data[0],
+    tomorrowData: data[1],
+    dayAfterData: data[2],
   };
 };

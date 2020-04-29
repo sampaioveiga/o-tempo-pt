@@ -44,7 +44,7 @@ export default class App extends React.Component {
   };
   
   render() {
-    let image  = require('./assets/clear.png');
+    let image  = require('./assets/hail.png');
     const { loading, error, location, forecast, maxTemp, minTemp, dataUpdate } = this.state;
 
     return (
@@ -125,7 +125,3 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   }
 });
-
-const descMeteo = [
-
-]
