@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 
 export default function DayAfterForecast({forecast}) {
   const day = forecast.date;
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontFamily: Platform.OS === 'ios' ? 'AvenirNext-Regular' : 'Roboto',
-    fontSize: 20,
+    fontSize: 16,
+    width: (Dimensions.get('window').width-100)/2,
   },
   textTitle: {
     fontWeight: 'bold',

@@ -6,12 +6,15 @@ export default function TodayForecast({location, today}) {
   const rain = today.rain; 
   const tMin = today.tMin;
   const tMax = today.tMax;
+  const windSpeed = today.windSpeed;
+  const windDir = today.windDir;
 
   return(
     <View>
       <Text style={[styles.textStyle, styles.largeText]}>{location}</Text>
       <Text style={[styles.textStyle, styles.smallText]}>{forecast} { rain > 51 ? '('+rain+'%)' : '' }</Text>
       <Text style={[styles.textStyle, styles.smallText]}>{tMin}° - {tMax}°</Text>
+      <Text style={[styles.textStyle, styles.smallText]}>Vento {windSpeed} {windDir}</Text>
     </View>
   );
 };

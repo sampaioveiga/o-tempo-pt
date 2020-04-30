@@ -5,7 +5,7 @@ import WeatherForecast from './screens/WeatherForecast';
 
 import { fetchWeather } from './utils/ipma_api';
 import * as descriptions from './utils/weather-type-classe.json';
-import * as locations from './utils/disctricts_islands.json';
+import * as wind_speed from './utils/wind-speed-daily-classe.json';
 
 export default class App extends React.Component {
   state = {
@@ -19,6 +19,8 @@ export default class App extends React.Component {
       tMin: '',
       tMax: '',
       rain: '',
+      windDir: '',
+      windSpeed: '',
     },
     tomorrow: {
       forecast: '',
@@ -32,33 +34,41 @@ export default class App extends React.Component {
       tMax: '',
       date: '',
     },
+    locationName: '',
     loc: [1040200, 1010500],
     activeLocation: 0,
   };
 
   componentDidMount() {
-    this.getWeather(this.state.loc[0]);
+    this.getWeather();
   };
 
-  getWeather = async location => {
+  getWeather = async () => {
+    const location = this.state.loc[this.state.activeLocation];
+
     this.setState({ appStatus: { loading: true }}, async () => {
       try {
-        const { todayData, tomorrowData, dayAfterData, dataUpdate } = await fetchWeather(location);
+        const { locationName, todayData, tomorrowData, dayAfterData, dataUpdate } = await fetchWeather(location);
         const todayForecast = descriptions.data.filter(o => o.idWeatherType === todayData.idWeatherType);
+        const windSpeed = wind_speed.data.filter(o => o.classWindSpeed === todayData.classWindSpeed);
         const tomorrowForecast = descriptions.data.filter(o => o.idWeatherType === tomorrowData.idWeatherType);
         const dayAfterForecast = descriptions.data.filter(o => o.idWeatherType === dayAfterData.idWeatherType);
-        
+        console.log(todayData.precipitaProb);
+
         this.setState({
           appStatus: {
             loading: false,
             error: false,
             dataUpdate: dataUpdate,
           },
+          locationName: locationName,
           today: {
             tMin: todayData.tMin,
             tMax: todayData.tMax,
             forecast: todayForecast[0].descIdWeatherTypePT,
             rain: todayData.precipitaProb,
+            windSpeed: windSpeed[0].descClassWindSpeedDailyPT,
+            windDir: todayData.predWinDir,
           },
           tomorrow: {
             tMin: tomorrowData.tMin,
@@ -89,21 +99,19 @@ export default class App extends React.Component {
   changeLocationHandler = () => {
     this.setState({
       activeLocation: 1,
-    });
-    console.log(this.state.loc[this.state.activeLocation]);
-    this.getWeather(this.state.loc[this.state.activeLocation]);
+    },
+    this.getWeather
+    );
   };
   
   render() {
-    const { loc, activeLocation, appStatus, today, tomorrow, dayAfter } = this.state;
-    const location = locations.data.filter(o => o.globalIdLocal === loc[activeLocation]);
+    const { locationName, appStatus, today, tomorrow, dayAfter } = this.state;
 
     return (
-      <View style={styles.container}>
+      <View style={styles.container} onTouchEndCapture={this.changeLocationHandler}>
         <StatusBar barStyle="light-content" />
-        <Text onPress={this.changeLocationHandler}>asd</Text>
         <WeatherForecast
-          location={location[0].local}
+          location={locationName}
           appStatus={appStatus}
           today={today}
           tomorrow={tomorrow}
