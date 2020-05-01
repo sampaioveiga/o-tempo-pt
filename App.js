@@ -53,7 +53,6 @@ export default class App extends React.Component {
         const windSpeed = wind_speed.data.filter(o => o.classWindSpeed === todayData.classWindSpeed);
         const tomorrowForecast = descriptions.data.filter(o => o.idWeatherType === tomorrowData.idWeatherType);
         const dayAfterForecast = descriptions.data.filter(o => o.idWeatherType === dayAfterData.idWeatherType);
-        console.log(todayData.precipitaProb);
 
         this.setState({
           appStatus: {

@@ -3,6 +3,7 @@ import { ActivityIndicator, ImageBackground, StyleSheet, Text, View } from 'reac
 
 import TodayForecast from '../components/TodayForecast';
 import DayAfterForecast from '../components/DayAfterForecast';
+import Navigator from '../components/Navigator';
 import DataUpdate from '../components/DataUpdate';
 
 export default function WeatherForecast({location, appStatus, today, tomorrow, dayAfter}) {
@@ -43,6 +44,7 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
             )}
           </View>
           <View>
+            <Navigator />
             <DataUpdate dataUpdate={dataUpdate} />
           </View>
         </View>
