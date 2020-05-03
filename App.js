@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, View } from 'react-native';
 
 import WeatherForecast from './screens/WeatherForecast';
 
@@ -35,7 +35,7 @@ export default class App extends React.Component {
       date: '',
     },
     locationName: '',
-    loc: [1040200, 1010500, 104020],
+    loc: [1040200, 1030300, 1010500 ],
     activeLocation: 0,
   };
 
@@ -95,9 +95,19 @@ export default class App extends React.Component {
     })
   };
 
-  changeLocationHandler = () => {
+  nextLocationHandler = () => {
+    if ( this.state.activeLocation === this.state.loc.length -1 ) { return; }
     this.setState({
-      activeLocation: 1,
+      activeLocation: this.state.activeLocation + 1,
+    },
+    this.getWeather
+    );
+  };
+
+  previousLocationHandler = () => {
+    if ( this.state.activeLocation === 0 ) { return; }
+    this.setState({
+      activeLocation: this.state.activeLocation - 1,
     },
     this.getWeather
     );
@@ -107,7 +117,7 @@ export default class App extends React.Component {
     const { locationName, appStatus, today, tomorrow, dayAfter, loc, activeLocation } = this.state;
 
     return (
-      <View style={styles.container} onTouchEndCapture={this.changeLocationHandler}>
+      <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <WeatherForecast
           location={locationName}
@@ -117,6 +127,8 @@ export default class App extends React.Component {
           dayAfter={dayAfter}
           activeLocation={activeLocation}
           loc={loc}
+          nextLocationHandler={this.nextLocationHandler}
+          previousLocationHandler={this.previousLocationHandler}
         />
       </View>
     );
