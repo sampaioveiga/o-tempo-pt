@@ -35,7 +35,7 @@ export default class App extends React.Component {
       date: '',
     },
     locationName: '',
-    loc: [1040200, 1010500],
+    loc: [1040200, 1010500, 104020],
     activeLocation: 0,
   };
 
@@ -104,7 +104,7 @@ export default class App extends React.Component {
   };
   
   render() {
-    const { locationName, appStatus, today, tomorrow, dayAfter } = this.state;
+    const { locationName, appStatus, today, tomorrow, dayAfter, loc, activeLocation } = this.state;
 
     return (
       <View style={styles.container} onTouchEndCapture={this.changeLocationHandler}>
@@ -115,6 +115,8 @@ export default class App extends React.Component {
           today={today}
           tomorrow={tomorrow}
           dayAfter={dayAfter}
+          activeLocation={activeLocation}
+          loc={loc}
         />
       </View>
     );

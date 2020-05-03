@@ -6,7 +6,7 @@ import DayAfterForecast from '../components/DayAfterForecast';
 import Navigator from '../components/Navigator';
 import DataUpdate from '../components/DataUpdate';
 
-export default function WeatherForecast({location, appStatus, today, tomorrow, dayAfter}) {
+export default function WeatherForecast({location, appStatus, today, tomorrow, dayAfter, loc, activeLocation}) {
   let image = require('../assets/hail.png');
   const loading = appStatus.loading;
   const error = appStatus.error;
@@ -44,7 +44,7 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
             )}
           </View>
           <View>
-            <Navigator />
+            <Navigator items={loc.length} activeItem={activeLocation}/>
             <DataUpdate dataUpdate={dataUpdate} />
           </View>
         </View>
