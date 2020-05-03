@@ -6,21 +6,18 @@ import DayAfterForecast from '../components/DayAfterForecast';
 import Navigator from '../components/Navigator';
 import DataUpdate from '../components/DataUpdate';
 
-export default function WeatherForecast({location, appStatus, today, tomorrow, dayAfter, loc, activeLocation, nextLocationHandler, previousLocationHandler }) {
+export default function WeatherForecast({location, appStatus, today, tomorrow, dayAfter, loc, activeLocation, nextLocationHandler, previousLocationHandler, openSettingsHandler }) {
   let image = require('../assets/hail.png');
   const loading = appStatus.loading;
   const error = appStatus.error;
   const dataUpdate = appStatus.dataUpdate;
 
   panResponder = PanResponder.create({
-    // Ask to be the responder:
     onMoveShouldSetPanResponder: (evt, gestureState) => true,
     onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
     onPanResponderTerminationRequest: (evt, gestureState) => true,
     onPanResponderRelease: (evt, gestureState) => {
-      // The user has released all touches while this view is the
-      // responder. This typically means a gesture has succeeded
       if ( gestureState.dx < 100 ) {
         nextLocationHandler();
       } else if ( gestureState.dx > 100) {
@@ -38,7 +35,7 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
       >
         <View style={styles.forecastContainer}>
           <View>
-            <Text style={{color: 'white', fontSize: 20, textAlign: 'right', }}>Settings</Text>
+            <Text onPress={openSettingsHandler} style={{color: 'white', fontSize: 20, textAlign: 'right', }}>Settings</Text>
           </View>
           <View>
             <ActivityIndicator animating={loading} color={"white"} size={"large"} />

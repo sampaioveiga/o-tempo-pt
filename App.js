@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StatusBar, StyleSheet, View } from 'react-native';
 
 import WeatherForecast from './screens/WeatherForecast';
+import Settings from './screens/Settings';
 
 import { fetchWeather } from './utils/ipma_api';
 import * as descriptions from './utils/weather-type-classe.json';
@@ -13,6 +14,7 @@ export default class App extends React.Component {
       loading: false,
       error: false,
       dataUpdate: '',
+      openSettings: false,
     },
     today: {
       forecast: '',
@@ -95,6 +97,22 @@ export default class App extends React.Component {
     })
   };
 
+  openSettingsHandler = () => {
+    this.setState({
+      appStatus: {
+        openSettings: true,
+      },
+    });
+  };
+
+  closeSettingsHandler = () => {
+    this.setState({
+      appStatus: {
+        openSettings: false,
+      },
+    });
+  };
+
   nextLocationHandler = () => {
     if ( this.state.activeLocation === this.state.loc.length -1 ) { return; }
     this.setState({
@@ -119,17 +137,23 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
-        <WeatherForecast
-          location={locationName}
-          appStatus={appStatus}
-          today={today}
-          tomorrow={tomorrow}
-          dayAfter={dayAfter}
-          activeLocation={activeLocation}
-          loc={loc}
-          nextLocationHandler={this.nextLocationHandler}
-          previousLocationHandler={this.previousLocationHandler}
-        />
+        {!appStatus.openSettings && (
+          <WeatherForecast
+            location={locationName}
+            appStatus={appStatus}
+            today={today}
+            tomorrow={tomorrow}
+            dayAfter={dayAfter}
+            activeLocation={activeLocation}
+            loc={loc}
+            nextLocationHandler={this.nextLocationHandler}
+            previousLocationHandler={this.previousLocationHandler}
+            openSettingsHandler={this.openSettingsHandler}
+          />
+        )}
+        {appStatus.openSettings && (
+          <Settings closeSettingsHandler={this.closeSettingsHandler} />
+        )}
       </View>
     );
   };
