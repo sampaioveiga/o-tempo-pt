@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ActivityIndicator, ImageBackground, PanResponder, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ImageBackground, PanResponder, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import TodayForecast from '../components/TodayForecast';
 import DayAfterForecast from '../components/DayAfterForecast';
@@ -12,7 +12,7 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
   const error = appStatus.error;
   const dataUpdate = appStatus.dataUpdate;
 
-  panResponder = PanResponder.create({
+  const panResponder = PanResponder.create({
     onMoveShouldSetPanResponder: (evt, gestureState) => true,
     onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
 
@@ -35,7 +35,14 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
       >
         <View style={styles.forecastContainer}>
           <View>
-            <Text onPress={openSettingsHandler} style={{color: 'white', fontSize: 20, textAlign: 'right', }}>Settings</Text>
+            <TouchableOpacity
+              style={styles.settingsButton}
+              onPress={openSettingsHandler}
+            >
+            <Text>
+              Settings
+            </Text>
+            </TouchableOpacity>
           </View>
           <View>
             <ActivityIndicator animating={loading} color={"white"} size={"large"} />
@@ -46,7 +53,7 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
                 )}
 
                 {!error && (
-                  <View {...this.panResponder.panHandlers}>
+                  <View {...panResponder.panHandlers}>
                     <TodayForecast location={location} today={today} />
                     <View style={styles.dayAfterContainer}>
                       <DayAfterForecast forecast={tomorrow}/>
@@ -96,5 +103,11 @@ const styles = StyleSheet.create({
   dayAfterContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
+  },
+  settingsButton: {
+    fontSize: 20,
+    alignItems: 'center',
+    backgroundColor: "#DDDDDD",
+    padding: 7,
   },
 });
