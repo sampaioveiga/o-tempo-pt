@@ -6,7 +6,7 @@ import DayAfterForecast from '../components/DayAfterForecast';
 import Navigator from '../components/Navigator';
 import DataUpdate from '../components/DataUpdate';
 
-export default function WeatherForecast({location, appStatus, today, tomorrow, dayAfter, loc, activeLocation, nextLocationHandler, previousLocationHandler, openSettingsHandler }) {
+export default function WeatherForecast({location, appStatus, today, tomorrow, dayAfter, savedLocations, activeLocation, nextLocationHandler, previousLocationHandler, openSettingsHandler }) {
   let image = require('../assets/hail.png');
   const loading = appStatus.loading;
   const error = appStatus.error;
@@ -36,12 +36,10 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
         <View style={styles.forecastContainer}>
           <View>
             <TouchableOpacity
-              style={styles.settingsButton}
+              style={styles.button}
               onPress={openSettingsHandler}
             >
-            <Text>
-              Settings
-            </Text>
+            <Text>Configuração</Text>
             </TouchableOpacity>
           </View>
           <View>
@@ -65,7 +63,7 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
             )}
           </View>
           <View>
-            <Navigator items={loc.length} activeItem={activeLocation}/>
+            <Navigator items={savedLocations.length} activeItem={activeLocation}/>
             <DataUpdate dataUpdate={dataUpdate} />
           </View>
         </View>
@@ -104,8 +102,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
-  settingsButton: {
-    fontSize: 20,
+  button: {
+    fontSize: 30,
     alignItems: 'center',
     backgroundColor: "#DDDDDD",
     padding: 7,

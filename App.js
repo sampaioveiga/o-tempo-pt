@@ -14,7 +14,7 @@ export default class App extends React.Component {
       loading: false,
       error: false,
       dataUpdate: '',
-      openSettings: false,
+      openSettings: true, // default to false after settings screen ok
     },
     today: {
       forecast: '',
@@ -37,16 +37,16 @@ export default class App extends React.Component {
       date: '',
     },
     locationName: '',
-    loc: [1040200, 1030300, 1010500 ],
+    savedLocations: [1040200, 1030300, 1010500 ],
     activeLocation: 0,
   };
 
   componentDidMount() {
-    this.getWeather();
+    //this.getWeather();
   };
 
   getWeather = async () => {
-    const location = this.state.loc[this.state.activeLocation];
+    const location = this.state.savedLocations[this.state.activeLocation];
 
     this.setState({ appStatus: { loading: true }}, async () => {
       try {
@@ -114,7 +114,7 @@ export default class App extends React.Component {
   };
 
   nextLocationHandler = () => {
-    if ( this.state.activeLocation === this.state.loc.length -1 ) { return; }
+    if ( this.state.activeLocation === this.state.savedLocations.length -1 ) { return; }
     this.setState({
       activeLocation: this.state.activeLocation + 1,
     },
@@ -132,7 +132,7 @@ export default class App extends React.Component {
   };
   
   render() {
-    const { locationName, appStatus, today, tomorrow, dayAfter, loc, activeLocation } = this.state;
+    const { locationName, appStatus, today, tomorrow, dayAfter, savedLocations, activeLocation } = this.state;
 
     return (
       <View style={styles.container}>
@@ -145,14 +145,17 @@ export default class App extends React.Component {
             tomorrow={tomorrow}
             dayAfter={dayAfter}
             activeLocation={activeLocation}
-            loc={loc}
+            savedLocations={savedLocations}
             nextLocationHandler={this.nextLocationHandler}
             previousLocationHandler={this.previousLocationHandler}
             openSettingsHandler={this.openSettingsHandler}
           />
         )}
         {appStatus.openSettings && (
-          <Settings closeSettingsHandler={this.closeSettingsHandler} />
+          <Settings
+            savedLocations={savedLocations}
+            closeSettingsHandler={this.closeSettingsHandler}
+          />
         )}
       </View>
     );
