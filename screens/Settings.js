@@ -3,77 +3,97 @@ import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from
 
 import * as district_Islands from '../utils/disctricts_islands.json';
 
-const DATA = district_Islands.data;
-
-function Item({ globalIdLocal, local, selected, onSelect }) {
-  return (
-    <TouchableOpacity
-      onPress={() => onSelect(globalIdLocal)}
-      style={[
-        styles.item,
-        { backgroundColor: selected ? 'white' : 'grey' },
-      ]}
-    >
-      <Text style={styles.title}>{local}</Text>
-    </TouchableOpacity>
-  );
-};
-
-function Header({ closeSettingsHandler }) {
+function Header({closeSettingsHandler}) {
   return(
     <TouchableOpacity
+      style={styles.button}
       onPress={closeSettingsHandler}
-      style={styles.header}
     >
-      <Text style={styles.headerTextStyle}>Sair</Text>
+      <Text>Sair</Text>
     </TouchableOpacity>
   );
 };
 
-export default function Settings({ savedLocations, closeSettingsHandler}) {
-  const [selected, setSelected] = React.useState(new Map());
+class MyListItem extends React.PureComponent {
+  _onPress = () => {
+    this.props.onPressItem(this.props.globalIdLocal);
+  };
 
-  const onSelect = React.useCallback(
-    globalIdLocal => {
-      const newSelected = new Map(selected);
-      console.log(newSelected);
-      newSelected.set(globalIdLocal, !selected.get(globalIdLocal));
+  render() {
+    const itemColor = this.props.selected ? 'white' : '#aaaaaa';
+    return (
+      <TouchableOpacity onPress={this._onPress} style={[styles.item, {backgroundColor: itemColor}]}>
+        <View>
+          <Text>{this.props.local}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}
 
-      setSelected(newSelected);
-    },
-    [selected],
+export default class Settings extends React.PureComponent {
+  state = {selected: new Map()};
+
+  componentDidMount() {
+    this.props.savedLocations.map(
+      i => this.setState({
+        selected: this.state.selected.set(i, true)
+      })
+    );
+  };
+
+  _keyExtractor = (item, index) => item.local;
+
+  _onPressItem = (id: string) => {
+    // updater functions are preferred for transactional updates
+    this.setState((state) => {
+      // copy the map rather than modifying state.
+      const selected = new Map(state.selected);
+      selected.set(id, !selected.get(id)); // toggle
+      return {selected};
+    });
+  };
+
+  _renderItem = ({item}) => (
+    <MyListItem
+      globalIdLocal={item.globalIdLocal}
+      onPressItem={this._onPressItem}
+      selected={!!this.state.selected.get(item.globalIdLocal)}
+      local={item.local}
+    />
   );
 
-  return(  
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        ListHeaderComponent={({ header }) => (
-          <Header
-            closeSettingsHandler={closeSettingsHandler}
-          />
-        )}
-        renderItem={({ item }) => (
-          <Item
-            globalIdLocal={item.globalIdLocal}
-            local={item.local}
-            selected={!!selected.get(item.globalIdLocal)}
-            onSelect={onSelect}
-          />
-        )}
-        keyExtractor={item => item.globalIdLocal}
-        extraData={selected}
-      />
-    </SafeAreaView>
+  _renderHeader = () => (
+    <Header
+      closeSettingsHandler={this.props.closeSettingsHandler}
+    />
   );
+
+  render() {
+    const { savedLocations, closeSettingsHandler, } = this.props;
+    const data = district_Islands.data;
+
+    return (
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={data}
+          extraData={this.state}
+          keyExtractor={this._keyExtractor}
+          renderItem={this._renderItem}
+          ListHeaderComponent={this._renderHeader}
+        />
+      </SafeAreaView>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#333333',
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: 'white',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -90,5 +110,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     padding: 7,
+  },
+  button: {
+    fontSize: 30,
+    alignItems: 'center',
+    backgroundColor: "#DDDDDD",
+    padding: 7,
+    borderRadius: 9,
   },
 });
