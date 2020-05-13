@@ -34,9 +34,9 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
         imageStyle={styles.image}
       >
         <View style={styles.forecastContainer}>
-          <View>
+          <View style={{alignItems: 'flex-end'}}>
             <TouchableOpacity
-              style={styles.button}
+              style={[styles.button, {margin: 7}]}
               onPress={openSettingsHandler}
             >
             <Text>Configuração</Text>
@@ -107,5 +107,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: "#DDDDDD",
     padding: 7,
+    borderRadius: 9,
+    width: 130,
   },
 });

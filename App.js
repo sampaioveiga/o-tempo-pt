@@ -14,7 +14,7 @@ export default class App extends React.Component {
       loading: false,
       error: false,
       dataUpdate: '',
-      openSettings: true, // default to false after settings screen ok
+      openSettings: false,
     },
     today: {
       forecast: '',
@@ -37,12 +37,18 @@ export default class App extends React.Component {
       date: '',
     },
     locationName: '',
-    savedLocations: [1040200, 1030300, 1010500 ],
+    savedLocations: [],
     activeLocation: 0,
   };
 
   componentDidMount() {
-    //this.getWeather();
+    if (this.state.savedLocations.length == 0) {
+      this.setState({
+        appStatus: { openSettings: true, },
+      });
+      return;
+    };
+    this.getWeather();
   };
 
   getWeather = async () => {
@@ -110,7 +116,9 @@ export default class App extends React.Component {
       appStatus: {
         openSettings: false,
       },
-    });
+    },
+    this.getWeather
+    );
   };
 
   nextLocationHandler = () => {
@@ -118,7 +126,7 @@ export default class App extends React.Component {
     this.setState({
       activeLocation: this.state.activeLocation + 1,
     },
-    this.getWeather
+      this.getWeather
     );
   };
 
@@ -127,8 +135,19 @@ export default class App extends React.Component {
     this.setState({
       activeLocation: this.state.activeLocation - 1,
     },
-    this.getWeather
+      this.getWeather
     );
+  };
+
+  addLocationHandler = id => {
+    this.setState({
+      savedLocations: [...this.state.savedLocations, id],
+    });
+  };
+
+  removeLocationHandler = id => {
+    const locations = this.state.savedLocations.filter(location => location !== id);
+    this.setState({ savedLocations: locations });
   };
   
   render() {
@@ -155,6 +174,8 @@ export default class App extends React.Component {
           <Settings
             savedLocations={savedLocations}
             closeSettingsHandler={this.closeSettingsHandler}
+            addLocation={this.addLocationHandler}
+            removeLocation={this.removeLocationHandler}
           />
         )}
       </View>

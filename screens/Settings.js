@@ -5,12 +5,19 @@ import * as district_Islands from '../utils/disctricts_islands.json';
 
 function Header({closeSettingsHandler}) {
   return(
-    <TouchableOpacity
-      style={styles.button}
-      onPress={closeSettingsHandler}
-    >
-      <Text>Sair</Text>
-    </TouchableOpacity>
+    <View style={{flexDirection: 'row', justifyContent: 'space-between', padding: 5}}>
+      <View>
+        <Text style={styles.headerTextStyle}>Configurações</Text>
+      </View>
+      <View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={closeSettingsHandler}
+        >
+          <Text style={[styles.headerTextStyle, {color: 'black'}]}>Sair</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 
@@ -49,6 +56,11 @@ export default class Settings extends React.PureComponent {
     this.setState((state) => {
       // copy the map rather than modifying state.
       const selected = new Map(state.selected);
+      if (selected.get(id)) {
+        this.props.removeLocation(id);
+      } else {
+        this.props.addLocation(id);
+      }
       selected.set(id, !selected.get(id)); // toggle
       return {selected};
     });
@@ -70,7 +82,7 @@ export default class Settings extends React.PureComponent {
   );
 
   render() {
-    const { savedLocations, closeSettingsHandler, } = this.props;
+    const { savedLocations, closeSettingsHandler, addLocation, removeLocation } = this.props;
     const data = district_Islands.data;
 
     return (
@@ -108,14 +120,16 @@ const styles = StyleSheet.create({
   },
   headerTextStyle: {
     textAlign: 'center',
-    fontSize: 20,
-    padding: 7,
+    fontSize: 22,
+    
+    color: 'white'
   },
   button: {
     fontSize: 30,
     alignItems: 'center',
     backgroundColor: "#DDDDDD",
-    padding: 7,
+    
     borderRadius: 9,
+    width: 130,
   },
 });
