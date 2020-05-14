@@ -10,13 +10,6 @@ function Header({closeSettingsHandler}) {
       <View>
         <TouchableOpacity
           style={styles.button}
-        >
-          <AntDesign name="info" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-      <View>
-        <TouchableOpacity
-          style={styles.button}
           onPress={closeSettingsHandler}
         >
           <AntDesign name="home" size={24} color="black" />
