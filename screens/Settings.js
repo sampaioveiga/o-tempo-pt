@@ -6,9 +6,13 @@ import * as district_Islands from '../utils/disctricts_islands.json';
 
 function Header({closeSettingsHandler}) {
   return(
-    <View style={{flexDirection: 'row', justifyContent: 'space-between', padding: 5}}>
+    <View style={styles.header}>
       <View>
-        <Text style={styles.headerTextStyle}>Configurações</Text>
+        <TouchableOpacity
+          style={styles.button}
+        >
+          <AntDesign name="info" size={24} color="black" />
+        </TouchableOpacity>
       </View>
       <View>
         <TouchableOpacity
@@ -88,12 +92,14 @@ export default class Settings extends React.PureComponent {
 
     return (
       <SafeAreaView style={styles.container}>
+        <Header
+          closeSettingsHandler={closeSettingsHandler}
+        />
         <FlatList
           data={data}
           extraData={this.state}
           keyExtractor={this._keyExtractor}
           renderItem={this._renderItem}
-          ListHeaderComponent={this._renderHeader}
         />
       </SafeAreaView>
     );
@@ -115,19 +121,16 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   header: {
-    width: '100%',
-    height: 45,
-    backgroundColor: '#DDDDDD',
-  },
-  headerTextStyle: {
-    textAlign: 'center',
-    fontSize: 22,
-    
-    color: 'white'
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   button: {
     backgroundColor: "#DDDDDD",
     margin: 7,
-    borderRadius: 4,
+    borderRadius: 15,
+    width: 30,
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

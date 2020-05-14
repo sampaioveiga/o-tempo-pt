@@ -4,7 +4,7 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 export default function DataUpdate({dataUpdate,}) {
   return(
     <View style={styles.container}>
-      <Text style={styles.text}>Fonta IPMA</Text>
+      <Text style={styles.text}>Fonte IPMA</Text>
       <Text style={styles.text}>Previsão atualizada a {dataUpdate}</Text>
     </View>
   );
