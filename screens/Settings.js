@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 import * as district_Islands from '../utils/disctricts_islands.json';
 
@@ -14,7 +15,7 @@ function Header({closeSettingsHandler}) {
           style={styles.button}
           onPress={closeSettingsHandler}
         >
-          <Text style={[styles.headerTextStyle, {color: 'black'}]}>Sair</Text>
+          <AntDesign name="save" size={24} color="black" />
         </TouchableOpacity>
       </View>
     </View>
@@ -125,11 +126,8 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   button: {
-    fontSize: 30,
-    alignItems: 'center',
     backgroundColor: "#DDDDDD",
-    
-    borderRadius: 9,
-    width: 130,
+    margin: 7,
+    borderRadius: 4,
   },
 });

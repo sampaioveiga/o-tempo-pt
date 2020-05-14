@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ActivityIndicator, ImageBackground, PanResponder, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 
 import TodayForecast from '../components/TodayForecast';
 import DayAfterForecast from '../components/DayAfterForecast';
@@ -36,10 +37,10 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
         <View style={styles.forecastContainer}>
           <View style={{alignItems: 'flex-end'}}>
             <TouchableOpacity
-              style={[styles.button, {margin: 7}]}
+              style={styles.button}
               onPress={openSettingsHandler}
             >
-            <Text>Configuração</Text>
+              <AntDesign name="setting" size={24} color="black" />
             </TouchableOpacity>
           </View>
           <View>
@@ -103,11 +104,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   button: {
-    fontSize: 30,
-    alignItems: 'center',
     backgroundColor: "#DDDDDD",
-    padding: 7,
-    borderRadius: 9,
-    width: 130,
+    margin: 7,
+    borderRadius: 15,
   },
 });
