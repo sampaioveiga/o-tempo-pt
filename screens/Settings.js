@@ -19,7 +19,7 @@ function Header({closeSettingsHandler}) {
           style={styles.button}
           onPress={closeSettingsHandler}
         >
-          <AntDesign name="save" size={24} color="black" />
+          <AntDesign name="home" size={24} color="black" />
         </TouchableOpacity>
       </View>
     </View>
@@ -113,12 +113,12 @@ const styles = StyleSheet.create({
   },
   item: {
     backgroundColor: 'white',
-    padding: 20,
-    marginVertical: 8,
+    padding: 10,
+    marginVertical: 6,
     marginHorizontal: 16,
   },
   local: {
-    fontSize: 32,
+    fontSize: 40,
   },
   header: {
     flexDirection: 'row',
