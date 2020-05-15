@@ -37,7 +37,7 @@ export default class App extends React.Component {
       date: '',
     },
     locationName: '',
-    savedLocations: [],
+    savedLocations: [1040200],
     activeLocation: 0,
   };
 

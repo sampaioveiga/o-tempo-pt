@@ -1,12 +1,22 @@
 import * as React from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Modal, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
 import * as district_Islands from '../utils/disctricts_islands.json';
 
-function Header({closeSettingsHandler}) {
+function Header({setModalVisible, closeSettingsHandler}) {
   return(
     <View style={styles.header}>
+      <View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            setModalVisible(true);
+          }}
+        >
+          <AntDesign name="info" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
       <View>
         <TouchableOpacity
           style={styles.button}
@@ -37,7 +47,10 @@ class MyListItem extends React.PureComponent {
 }
 
 export default class Settings extends React.PureComponent {
-  state = {selected: new Map()};
+  state = {
+    selected: new Map(),
+    modalVisible: false,
+  };
 
   componentDidMount() {
     this.props.savedLocations.map(
@@ -47,12 +60,14 @@ export default class Settings extends React.PureComponent {
     );
   };
 
+  setModalVisible = (visible) => {
+    this.setState({ modalVisible: visible });
+  };
+
   _keyExtractor = (item, index) => item.local;
 
   _onPressItem = (id: string) => {
-    // updater functions are preferred for transactional updates
     this.setState((state) => {
-      // copy the map rather than modifying state.
       const selected = new Map(state.selected);
       if (selected.get(id)) {
         this.props.removeLocation(id);
@@ -80,12 +95,34 @@ export default class Settings extends React.PureComponent {
   );
 
   render() {
+    const { modalVisible } = this.state;
     const { savedLocations, closeSettingsHandler, addLocation, removeLocation } = this.props;
     const data = district_Islands.data;
 
     return (
       <SafeAreaView style={styles.container}>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>Hello World!</Text>
+
+              <TouchableOpacity
+                style={[styles.button, { }]}
+                onPress={() => {
+                  this.setModalVisible(!modalVisible);
+                }}
+              >
+                <AntDesign name="home" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
         <Header
+          setModalVisible={this.setModalVisible}
           closeSettingsHandler={closeSettingsHandler}
         />
         <FlatList
@@ -125,5 +162,41 @@ const styles = StyleSheet.create({
     height: 30,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  textStyle: {
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center"
   },
 });
