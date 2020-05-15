@@ -108,7 +108,7 @@ export default class Settings extends React.PureComponent {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Hello World!</Text>
+              <Text style={styles.modalText}>Meteo IPMA</Text>
 
               <TouchableOpacity
                 style={[styles.button, { }]}
@@ -116,7 +116,7 @@ export default class Settings extends React.PureComponent {
                   this.setModalVisible(!modalVisible);
                 }}
               >
-                <AntDesign name="home" size={24} color="black" />
+                <AntDesign name="close" size={24} color="black" />
               </TouchableOpacity>
             </View>
           </View>
