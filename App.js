@@ -5,6 +5,7 @@ import WeatherForecast from './screens/WeatherForecast';
 import Settings from './screens/Settings';
 
 import { fetchWeather } from './utils/ipma_api';
+import { fetchImage } from './utils/fetchImage';
 import * as descriptions from './utils/weather-type-classe.json';
 import * as wind_speed from './utils/wind-speed-daily-classe.json';
 
@@ -39,6 +40,9 @@ export default class App extends React.Component {
     locationName: '',
     savedLocations: [1040200],
     activeLocation: 0,
+    query: '',
+    photo: '',
+    photographer: '',
   };
 
   componentDidMount() {
@@ -91,7 +95,10 @@ export default class App extends React.Component {
             date: dayAfterData.forecastDate,
             rain: dayAfterData.precipitaProb,
           },
-        });
+          query: todayForecast[0].descIdWeatherTypePT,
+        },
+          this.getImage,
+        );
       } catch (e) {
         this.setState({
           appStatus: {
@@ -101,6 +108,20 @@ export default class App extends React.Component {
         })
       }
     })
+  };
+
+  getImage = async () => {
+    const query = this.state.query;
+    
+    try {
+      const { photo, photographer } = await fetchImage(query);
+      this.setState({
+        photo: photo,
+        photographer: photographer,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   openSettingsHandler = () => {
@@ -151,7 +172,7 @@ export default class App extends React.Component {
   };
   
   render() {
-    const { locationName, appStatus, today, tomorrow, dayAfter, savedLocations, activeLocation } = this.state;
+    const { locationName, appStatus, today, tomorrow, dayAfter, savedLocations, activeLocation, photo, photographer } = this.state;
 
     return (
       <View style={styles.container}>
@@ -168,6 +189,8 @@ export default class App extends React.Component {
             nextLocationHandler={this.nextLocationHandler}
             previousLocationHandler={this.previousLocationHandler}
             openSettingsHandler={this.openSettingsHandler}
+            photo={photo}
+            photographer={photographer}
           />
         )}
         {appStatus.openSettings && (

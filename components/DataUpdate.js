@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 
-export default function DataUpdate({dataUpdate,}) {
+export default function DataUpdate({ photographer, dataUpdate }) {
   return(
     <View style={styles.container}>
-      <Text style={styles.text}>Fonte IPMA</Text>
-      <Text style={styles.text}>Previsão atualizada a {dataUpdate}</Text>
+      <Text style={styles.text}>Pexels: {photographer}</Text>
+      <Text style={styles.text}>Dados: IPMA</Text>
+      <Text style={styles.text}>{dataUpdate}</Text>
     </View>
   );
 };

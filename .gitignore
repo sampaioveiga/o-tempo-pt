@@ -60,3 +60,6 @@ buck-out/
 
 # Expo
 .expo/*
+
+# My API key
+utils/pexelsAPIKey.js

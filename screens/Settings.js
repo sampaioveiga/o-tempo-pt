@@ -66,7 +66,7 @@ export default class Settings extends React.PureComponent {
 
   _keyExtractor = (item, index) => item.local;
 
-  _onPressItem = (id: string) => {
+  _onPressItem = (id) => {
     this.setState((state) => {
       const selected = new Map(state.selected);
       if (selected.get(id)) {
@@ -108,7 +108,10 @@ export default class Settings extends React.PureComponent {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>Meteo IPMA</Text>
+              <Text style={styles.modalText}>O Tempo</Text>
+              <Text style={styles.modalText}>
+                Aplicação com tutorial de demonstração.
+              </Text>
 
               <TouchableOpacity
                 style={[styles.button, { }]}
