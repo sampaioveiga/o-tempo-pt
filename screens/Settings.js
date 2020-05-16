@@ -108,9 +108,12 @@ export default class Settings extends React.PureComponent {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <Text style={styles.modalText}>O Tempo</Text>
+              <Text style={[styles.modalText, {fontWeight: 'bold'}]}>O Tempo</Text>
               <Text style={styles.modalText}>
-                Aplicação com tutorial de demonstração.
+                Aplicação com tutorial de demonstração. Construída em React Native, com uso de API do IPMA para a previsão meteorológica e da API de Pexels para as imagens.
+              </Text>
+              <Text style={styles.modalText}>
+                 As funcionalidades incluem navegação com o dedo entre localidades e a escolha das capitais de distrito e ilhas.
               </Text>
 
               <TouchableOpacity

@@ -29,7 +29,7 @@ export default function WeatherForecast({location, appStatus, today, tomorrow, d
   return(
     <View style={styles.container}>
       <ImageBackground
-        source={{ uri: photo }}
+        source={{ uri: photo !== '' ? photo : 'https://photos.app.goo.gl/uhhKASpXpoPu3tZp8' }}
         style={styles.imageContainer}
         imageStyle={styles.image}
       >
