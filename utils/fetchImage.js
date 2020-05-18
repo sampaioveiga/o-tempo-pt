@@ -1,4 +1,4 @@
-import apiKey from './APIKey';
+import apiKey from './pexelsAPIKey';
 
 export const fetchImage = async forecast => {
     const headers = new Headers({
