@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { StatusBar, StyleSheet, View } from 'react-native';
+import { Button, StatusBar, StyleSheet, View } from 'react-native';
+import * as SecureStore from 'expo-secure-store';
 
 import WeatherForecast from './screens/WeatherForecast';
 import Settings from './screens/Settings';
@@ -38,7 +39,7 @@ export default class App extends React.Component {
       date: '',
     },
     locationName: '',
-    savedLocations: [1040200],
+    savedLocations: '',
     activeLocation: 0,
     query: '',
     photo: '',
@@ -46,13 +47,45 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    if (this.state.savedLocations.length == 0) {
-      this.setState({
-        appStatus: { openSettings: true, },
-      });
-      return;
-    };
-    this.getWeather();
+    this.read();
+  };
+
+  read = async () => {
+    try {
+      const savedLocations = await SecureStore.getItemAsync('locations');
+
+      if (savedLocations) {
+        const myJson = JSON.parse(savedLocations);
+        this.setState({
+          savedLocations: myJson,
+        },
+        this.getWeather
+        );
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  remember = async () => {
+    const { savedLocations } = this.state;
+    
+    try {
+      await SecureStore.setItemAsync(
+        'locations',
+        JSON.stringify(savedLocations)
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  clear = async () => {
+    try {
+      await SecureStore.deleteItemAsync('locations');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   getWeather = async () => {
@@ -133,6 +166,7 @@ export default class App extends React.Component {
   };
 
   closeSettingsHandler = () => {
+    this.remember();
     this.setState({
       appStatus: {
         openSettings: false,
