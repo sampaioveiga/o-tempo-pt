@@ -53,11 +53,13 @@ export default class Settings extends React.PureComponent {
   };
 
   componentDidMount() {
-    this.props.savedLocations.map(
-      i => this.setState({
-        selected: this.state.selected.set(i, true)
-      })
-    );
+    if (this.props.savedLocations) {
+      this.props.savedLocations.map(
+        i => this.setState({
+          selected: this.state.selected.set(i, true)
+        })
+      );
+    }
   };
 
   setModalVisible = (visible) => {

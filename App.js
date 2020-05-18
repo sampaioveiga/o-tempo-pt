@@ -59,9 +59,11 @@ export default class App extends React.Component {
         this.setState({
           savedLocations: myJson,
         },
-        this.getWeather
-        );
-      }
+          this.getWeather
+        )
+      } else {
+        this.openSettingsHandler();
+      };
     } catch (e) {
       console.log(e);
     }
