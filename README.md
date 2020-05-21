@@ -1,4 +1,4 @@
-<h1>IPMA</h1>
+<h1>O Tempo PT</h1>
 <p>
 Aplicação desenvolvida em React Native e publicada na Google Play Store.
 </p>
