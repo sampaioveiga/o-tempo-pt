@@ -1,10 +1,10 @@
 {
-  "name": "ipma",
-  "displayName": "ipma",
+  "name": "O Tempo PT",
+  "displayName": "O Tempo PT",
   "expo": {
-    "name": "ipma",
-    "slug": "ipma",
-    "version": "1.0.0",
+    "name": "O Tempo PT",
+    "slug": "O-Tempo-PT",
+    "version": "1.0.1",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -18,6 +18,13 @@
     ],
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "orientation": "portrait",
+    "description": "",
+    "android": {
+      "package": "com.sampaioveiga.otempopt",
+      "versionCode": 2,
+      "permissions": []
+    }
   }
 }

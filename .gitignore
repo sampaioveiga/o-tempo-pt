@@ -63,3 +63,6 @@ buck-out/
 
 # My API key
 utils/pexelsAPIKey.js
+
+# Keystore files
+*.jks
