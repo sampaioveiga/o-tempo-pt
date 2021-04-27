@@ -8,19 +8,20 @@
     "test": "jest"
   },
   "dependencies": {
-    "expo": "^37.0.7",
+    "expo": "^41.0.0",
     "expo-cli": "^3.20.1",
-    "expo-secure-store": "^8.1.0",
-    "expo-updates": "~0.1.0",
-    "react": "~16.9.0",
-    "react-dom": "~16.9.0",
-    "react-native": "~0.61.5",
+    "expo-secure-store": "~10.1.0",
+    "expo-updates": "~0.5.4",
+    "moment": "^2.29.1",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "0.63.4",
     "react-native-elements": "^2.0.0",
-    "react-native-gesture-handler": "~1.6.0",
-    "react-native-reanimated": "~1.7.0",
-    "react-native-screens": "~2.2.0",
-    "react-native-unimodules": "~0.9.0",
-    "react-native-web": "~0.11.7"
+    "react-native-gesture-handler": "~1.10.2",
+    "react-native-reanimated": "~2.1.0",
+    "react-native-screens": "~3.0.0",
+    "react-native-unimodules": "~0.13.3",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",

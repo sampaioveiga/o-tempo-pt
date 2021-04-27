@@ -4,7 +4,7 @@
   "expo": {
     "name": "O Tempo PT",
     "slug": "O-Tempo-PT",
-    "version": "1.0.1",
+    "version": "2.0",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -20,10 +20,11 @@
       "**/*"
     ],
     "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
     "description": "",
     "android": {
       "package": "com.sampaioveiga.otempopt",
-      "versionCode": 2,
+      "versionCode": 3,
       "permissions": []
     }
   }
