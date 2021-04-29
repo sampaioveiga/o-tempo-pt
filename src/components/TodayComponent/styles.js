@@ -1,22 +1,25 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  todayContainer: {
+  centeredView: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   rainContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    width: '70%',
   },
 });
 
 export const ThemeColors = {
-  todayContainer: {
+  container: {
     light: {
-      backgroundColor: 'rgba(0,0,0,0.3)',
+      backgroundColor: 'rgba(0,0,0,0.4)',
     },
     dark: {
-      backgroundColor: 'rgba(255,255,255,0.3)',
+      backgroundColor: 'rgba(255,255,255,0.4)',
     }
   },
   textColor: {

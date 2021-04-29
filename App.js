@@ -7,7 +7,7 @@ import ForecastScreen from './src/screens/ForecastScreen/ForecastScreen';
 
 export default function App() {
   const [ locations, setLocations ] = useState([
-    1110600,
+    1040200,
   ]);
 
   return(
