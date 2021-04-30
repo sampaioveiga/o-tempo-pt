@@ -15,6 +15,7 @@ export default function TodayComponent(props) {
   const window = useWindowDimensions();
   const location = districts_islands.data.filter(o => o.globalIdLocal === locationID);
 
+  console.log(day);
   return (
     <View style={[styles.centeredView, ThemeColors.container[colorScheme]]}>
       <Text style={[ { fontSize: window.width*.2 }, ThemeColors.textColor[colorScheme]]}>{location[0]['local']}</Text>
@@ -32,7 +33,8 @@ export default function TodayComponent(props) {
         </View>
 
         <WindIconComponent
-          forecast={day['classWindSpeed']}
+          windSpeed={day['classWindSpeed']}
+          windDir={day['predWindDir']}
           colorScheme={colorScheme}
           size={window.width*.15}
         />

@@ -5,46 +5,48 @@ import styles, { ThemeColors } from './styles';
 
 export default function WindIconComponent(props) {
   const {
-    forecast,
+    windSpeed,
+    windDir,
     colorScheme,
     size,
   } = props;
 
   const noInfo = (
-    <View>
+    <View style={styles.centeredView}>
+      <MaterialCommunityIcons name="beaker-question" size={size} color={ThemeColors.icon[colorScheme].color} />
       <MaterialCommunityIcons name="beaker-question" size={size} color={ThemeColors.icon[colorScheme].color} />
     </View>
   );
 
   const weak = (
-    <View>
-      <MaterialCommunityIcons name="weather-windy" size={size} color={ThemeColors.icon[colorScheme].color} />
-      <MaterialCommunityIcons name="gauge-empty" size={size} color={ThemeColors.icon[colorScheme].color} />
+    <View style={styles.centeredView}>
+      <MaterialCommunityIcons name="fan-minus" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <Text style={[ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
     </View>
   );
 
   const moderate = (
-    <View>
-      <MaterialCommunityIcons name="weather-windy-variant" size={size} color={ThemeColors.icon[colorScheme].color} />
-      <MaterialCommunityIcons name="gauge-low" size={size} color={ThemeColors.icon[colorScheme].color} />
+    <View style={styles.centeredView}>
+      <MaterialCommunityIcons name="fan" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <MaterialCommunityIcons name="weather-windy" size={size} color={ThemeColors.icon[colorScheme].color} />
     </View>
   );
 
   const strong = (
-    <View>
-      <MaterialCommunityIcons name="weather-windy-variant" size={size} color={ThemeColors.icon[colorScheme].color} />
-      <MaterialCommunityIcons name="gauge" size={size} color={ThemeColors.icon[colorScheme].color} />
+    <View style={styles.centeredView}>
+      <MaterialCommunityIcons name="fan-plus" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <MaterialCommunityIcons name="weather-windy" size={size} color={ThemeColors.icon[colorScheme].color} />
     </View>
   );
 
   const veryStrong = (
-    <View>
-      <MaterialCommunityIcons name="weather-windy-variant" size={size} color={ThemeColors.icon[colorScheme].color}/>
-      <MaterialCommunityIcons name="gauge-full" size={size} color={ThemeColors.icon[colorScheme].color} />
+    <View style={styles.centeredView}>
+      <MaterialCommunityIcons name="fan-alert" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <MaterialCommunityIcons name="weather-windy" size={size} color={ThemeColors.icon[colorScheme].color} />
     </View>
   );
 
-  switch (forecast) {
+  switch (windSpeed) {
     case 1:
       return(weak);
       break;
