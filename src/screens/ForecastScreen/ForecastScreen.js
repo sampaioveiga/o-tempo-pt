@@ -13,6 +13,8 @@ import styles, { ThemeColors } from './styles';
 import TodayComponent from '../../components/TodayComponent/TodayComponent';
 import NextDayComponent from '../../components/NextDayComponent/NextDayComponent';
 import { fetchForecast } from '../../utils/fetchForecast';
+import { fetchImage } from '../../utils/fetchImage';
+import WeatherTypeClasse from '../../utils/weather-type-classe.json';
 
 // ----------------------------------------------------------------- main function
 export default function ForecastScreen(props) {
@@ -29,6 +31,8 @@ export default function ForecastScreen(props) {
   const [ day2, setDay2 ] = useState({});
   const [ day3, setDay3 ] = useState({});
   const [ day4, setDay4 ] = useState({});
+  const [ query, setQuery ] = useState(null);
+  const [ photo, setPhoto ] = useState('');
 
   // ----------------------------------------------------------------- fetch Forecast for location
   useEffect(() => {
@@ -42,12 +46,28 @@ export default function ForecastScreen(props) {
         setDay4(response.data[4]);
         setUpdateAt(response.dataUpdate);
         setLoading(false);
+        const wt = WeatherTypeClasse.data.filter(o => o.idWeatherType === day0.idWeatherType);
+        console.log(wt);
+        setQuery(wt);
       } catch (e) {
         console.log(e);
       }
     }
     fetchData();
   }, [location]);
+
+  useEffect(() => {
+    const getImage = async () => {
+      
+      try {
+        const { photo, photographer } = await fetchImage(query);
+        setPhoto(photo);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getImage();
+  });
 
   // ----------------------------------------------------------------- header component
   const header = (
@@ -58,7 +78,7 @@ export default function ForecastScreen(props) {
     </View>
   );
 
-  // ----------------------------------------------------------------- header component
+  // ----------------------------------------------------------------- footer component
   const footer = (
     <View style={styles.footer}>
       <Text style={ThemeColors.textColor[colorScheme]}>useColorScheme(): {colorScheme}</Text>
@@ -77,8 +97,9 @@ export default function ForecastScreen(props) {
   return(
     <View style={styles.container}>
       <ImageBackground
-        source={require('../../../assets/SplitShire-The-Walking-Bob-06.webp')}
-        //source={require('../../../assets/SplitShire-21-8659.webp')}
+        //source={require('../../../assets/SplitShire-The-Walking-Bob-06.webp')}
+        source={require('../../../assets/SplitShire-21-8659.webp')}
+        //source={{ uri: photo !== '' ? photo : 'https://photos.app.goo.gl/uhhKASpXpoPu3tZp8' }}
         style={styles.imgBg}
         >
         <View style={styles.forecastContainer}>
