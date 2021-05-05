@@ -14,7 +14,8 @@ import TodayComponent from '../../components/TodayComponent/TodayComponent';
 import NextDayComponent from '../../components/NextDayComponent/NextDayComponent';
 import { fetchForecast } from '../../utils/fetchForecast';
 import { fetchImage } from '../../utils/fetchImage';
-import WeatherTypeClasse from '../../utils/weather-type-classe.json';
+import weatherDesc from '../../utils/weather-type-classe.json';
+import districts_islands from '../../utils/districts_islands.json';
 
 // ----------------------------------------------------------------- main function
 export default function ForecastScreen(props) {
@@ -26,12 +27,14 @@ export default function ForecastScreen(props) {
   const window = useWindowDimensions();
   const location = locations[0];
   const [ updateAt, setUpdateAt ] = useState({});
-  const [ day0, setDay0 ] = useState({});
+  const [ day0, setDay0 ] = useState({
+    idWeatherType: 0,
+  });
   const [ day1, setDay1 ] = useState({});
   const [ day2, setDay2 ] = useState({});
   const [ day3, setDay3 ] = useState({});
   const [ day4, setDay4 ] = useState({});
-  const [ query, setQuery ] = useState(null);
+  const [ query, setQuery ] = useState('sem info');
   const [ photo, setPhoto ] = useState('');
 
   // ----------------------------------------------------------------- fetch Forecast for location
@@ -46,9 +49,9 @@ export default function ForecastScreen(props) {
         setDay4(response.data[4]);
         setUpdateAt(response.dataUpdate);
         setLoading(false);
-        const wt = WeatherTypeClasse.data.filter(o => o.idWeatherType === day0.idWeatherType);
-        console.log(wt);
-        setQuery(wt);
+        const q = weatherDesc.data.filter(o => o.idWeatherType === day0.idWeatherType);
+        //setQuery(q[0].descIdWeatherTypePT);
+        setQuery(q[0].idWeatherType);
       } catch (e) {
         console.log(e);
       }
@@ -58,8 +61,8 @@ export default function ForecastScreen(props) {
 
   useEffect(() => {
     const getImage = async () => {
-      
       try {
+        //const { photo, photographer } = await fetchImage('sunny');
         const { photo, photographer } = await fetchImage(query);
         setPhoto(photo);
       } catch (e) {
@@ -67,7 +70,7 @@ export default function ForecastScreen(props) {
       }
     };
     getImage();
-  });
+  }, [query]);
 
   // ----------------------------------------------------------------- header component
   const header = (
@@ -98,8 +101,8 @@ export default function ForecastScreen(props) {
     <View style={styles.container}>
       <ImageBackground
         //source={require('../../../assets/SplitShire-The-Walking-Bob-06.webp')}
-        source={require('../../../assets/SplitShire-21-8659.webp')}
-        //source={{ uri: photo !== '' ? photo : 'https://photos.app.goo.gl/uhhKASpXpoPu3tZp8' }}
+        //source={require('../../../assets/SplitShire-21-8659.webp')}
+        source={{ uri: photo !== '' ? photo : 'https://photos.app.goo.gl/uhhKASpXpoPu3tZp8' }}
         style={styles.imgBg}
         >
         <View style={styles.forecastContainer}>
