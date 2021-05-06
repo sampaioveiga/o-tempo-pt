@@ -11,10 +11,11 @@ export const fetchImage = async forecast => {
       }
     );
     const { photos } = await response.json();
+    const rnd = Math.floor(Math.random() * 15);
 
     return { 
-      photo: photos[0].src.portrait,
-      photographer: photos[0].photographer,
+      photo: photos[rnd].src.portrait,
+      photographer: photos[rnd].photographer,
     };
   };
 
