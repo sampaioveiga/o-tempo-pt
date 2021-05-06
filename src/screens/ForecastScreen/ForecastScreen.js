@@ -14,8 +14,6 @@ import TodayComponent from '../../components/TodayComponent/TodayComponent';
 import NextDayComponent from '../../components/NextDayComponent/NextDayComponent';
 import { fetchForecast } from '../../utils/fetchForecast';
 import { fetchImage } from '../../utils/fetchImage';
-import weatherDesc from '../../utils/weather-type-classe.json';
-import districts_islands from '../../utils/districts_islands.json';
 
 // ----------------------------------------------------------------- main function
 export default function ForecastScreen(props) {
@@ -34,8 +32,11 @@ export default function ForecastScreen(props) {
   const [ day2, setDay2 ] = useState({});
   const [ day3, setDay3 ] = useState({});
   const [ day4, setDay4 ] = useState({});
-  const [ query, setQuery ] = useState('sem info');
-  const [ photo, setPhoto ] = useState('');
+  //const [ query, setQuery ] = useState('sem info');
+  const [ photo, setPhoto ] = useState({
+    photo: '',
+    photographer: '',
+  });
 
   // ----------------------------------------------------------------- fetch Forecast for location
   useEffect(() => {
@@ -49,9 +50,6 @@ export default function ForecastScreen(props) {
         setDay4(response.data[4]);
         setUpdateAt(response.dataUpdate);
         setLoading(false);
-        const q = weatherDesc.data.filter(o => o.idWeatherType === day0.idWeatherType);
-        //setQuery(q[0].descIdWeatherTypePT);
-        setQuery(q[0].idWeatherType);
       } catch (e) {
         console.log(e);
       }
@@ -62,15 +60,15 @@ export default function ForecastScreen(props) {
   useEffect(() => {
     const getImage = async () => {
       try {
-        //const { photo, photographer } = await fetchImage('sunny');
-        const { photo, photographer } = await fetchImage(query);
-        setPhoto(photo);
+        //const { photo, photographer } = await fetchImage(query);
+        const { photo, photographer } = await fetchImage();
+        setPhoto({photo: photo, photographer: photographer});
       } catch (e) {
         console.log(e);
       }
     };
     getImage();
-  }, [query]);
+  }, [day0]);
 
   // ----------------------------------------------------------------- header component
   const header = (
@@ -84,8 +82,12 @@ export default function ForecastScreen(props) {
   // ----------------------------------------------------------------- footer component
   const footer = (
     <View style={styles.footer}>
-      <Text style={ThemeColors.textColor[colorScheme]}>useColorScheme(): {colorScheme}</Text>
-      <Text style={ThemeColors.textColor[colorScheme]}>{updateAt}</Text>
+      <View style={ThemeColors.footer[colorScheme]}>
+        <Text style={ThemeColors.textColor[colorScheme]}>Pexels: {photo.photographer}</Text>
+      </View>
+      <View style={ThemeColors.footer[colorScheme]}>
+        <Text style={ThemeColors.textColor[colorScheme]}>{updateAt}</Text>
+      </View>
     </View>
   )
 
@@ -100,9 +102,7 @@ export default function ForecastScreen(props) {
   return(
     <View style={styles.container}>
       <ImageBackground
-        //source={require('../../../assets/SplitShire-The-Walking-Bob-06.webp')}
-        //source={require('../../../assets/SplitShire-21-8659.webp')}
-        source={{ uri: photo !== '' ? photo : 'https://photos.app.goo.gl/uhhKASpXpoPu3tZp8' }}
+        source={{ uri: photo.photo !== '' ? photo.photo : 'https://photos.app.goo.gl/uhhKASpXpoPu3tZp8' }}
         style={styles.imgBg}
         >
         <View style={styles.forecastContainer}>

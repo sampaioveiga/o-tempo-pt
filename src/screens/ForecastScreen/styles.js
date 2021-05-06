@@ -34,8 +34,10 @@ export default StyleSheet.create({
     width: '100%',
   },
   footer: {
-    alignItems: 'flex-end',
-    width: '90%',
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    justifyContent: 'space-between',
+    width:'85%'
   }
 });
 
@@ -52,12 +54,10 @@ export const ThemeColors = {
   },
   headerButton: {
     light: {
-      //backgroundColor: 'black',
       backgroundColor: 'rgba(0,0,0,0.3)',
       color: 'white',
     },
     dark: {
-      //backgroundColor: 'white',
       backgroundColor: 'rgba(255,255,255,0.3)',
       color: 'black',
     },
@@ -69,5 +69,15 @@ export const ThemeColors = {
     dark: {
       color: 'black',
     },
+  },
+  footer: {
+    light: {
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      color: 'black',
+    },
+    dark: {
+      backgroundColor: 'rgba(255,255,255,0.3)',
+      color: 'white',
+    }
   },
 };

@@ -5,7 +5,7 @@ export const fetchImage = async forecast => {
       'Authorization': apiKey
     });
     const response = await fetch(
-      `https://api.pexels.com/v1/search?query=${forecast}&orientation=portrait&per_page=1&locale=pt-BR`,
+      `https://api.pexels.com/v1/curated`,
       {
         headers: headers
       }
@@ -13,7 +13,7 @@ export const fetchImage = async forecast => {
     const { photos } = await response.json();
 
     return { 
-      photo: photos[0].src.original,
+      photo: photos[0].src.portrait,
       photographer: photos[0].photographer,
     };
   };
