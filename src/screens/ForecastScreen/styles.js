@@ -35,10 +35,10 @@ export default StyleSheet.create({
   },
   footer: {
     flexDirection: 'row',
-    alignItems: 'stretch',
     justifyContent: 'space-between',
-    width:'85%'
-  }
+    alignItems: 'baseline',
+    width: '80%',
+  },
 });
 
 export const ThemeColors = {
@@ -54,11 +54,11 @@ export const ThemeColors = {
   },
   headerButton: {
     light: {
-      backgroundColor: 'rgba(0,0,0,0.3)',
+      backgroundColor: 'rgba(0,0,0,0.4)',
       color: 'white',
     },
     dark: {
-      backgroundColor: 'rgba(255,255,255,0.3)',
+      backgroundColor: 'rgba(255,255,255,0.4)',
       color: 'black',
     },
   },
@@ -72,11 +72,11 @@ export const ThemeColors = {
   },
   footer: {
     light: {
-      backgroundColor: 'rgba(0,0,0,0.3)',
+      backgroundColor: 'rgba(0,0,0,0.4)',
       color: 'black',
     },
     dark: {
-      backgroundColor: 'rgba(255,255,255,0.3)',
+      backgroundColor: 'rgba(255,255,255,0.4)',
       color: 'white',
     }
   },

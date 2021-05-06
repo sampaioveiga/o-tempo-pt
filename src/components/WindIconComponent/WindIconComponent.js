@@ -20,21 +20,21 @@ export default function WindIconComponent(props) {
 
   const weak = (
     <View style={styles.centeredView}>
-      <MaterialCommunityIcons name="fan-minus" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <MaterialCommunityIcons name="fan-speed-1" size={size} color={ThemeColors.icon[colorScheme].color} />
       <Text style={[ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
     </View>
   );
 
   const moderate = (
     <View style={styles.centeredView}>
-      <MaterialCommunityIcons name="fan" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <MaterialCommunityIcons name="fan-speed-2" size={size} color={ThemeColors.icon[colorScheme].color} />
       <Text style={[ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
     </View>
   );
 
   const strong = (
     <View style={styles.centeredView}>
-      <MaterialCommunityIcons name="fan-plus" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <MaterialCommunityIcons name="fan-speed-3" size={size} color={ThemeColors.icon[colorScheme].color} />
       <Text style={[ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
     </View>
   );

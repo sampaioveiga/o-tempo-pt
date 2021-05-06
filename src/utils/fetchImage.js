@@ -11,7 +11,7 @@ export const fetchImage = async forecast => {
       }
     );
     const { photos } = await response.json();
-    const rnd = Math.floor(Math.random() * 15);
+    const rnd = Math.floor(Math.random() * photos.length);
 
     return { 
       photo: photos[rnd].src.portrait,
