@@ -77,7 +77,7 @@ export default function ForecastScreen(props) {
       }
     };
     getImage();
-  }, [day0]);
+  }, [day0, loading]);
 
   // ----------------------------------------------------------------- touch input
   const panResponder = PanResponder.create({

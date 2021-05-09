@@ -15,23 +15,39 @@ export default StyleSheet.create({
 
 export const ThemeColors = {
   active: {
-    light: {
-      color: 'white',
-      backgroundColor: 'rgba(0,0,0,0.6)',
+    outer: {
+      light: {
+        backgroundColor: 'rgba(0,0,0,0.6)',
+      },
+      dark: {
+        backgroundColor: 'rgba(255,255,255,0.6)',
+      },
     },
-    dark: {
-      color: 'black',
-      backgroundColor: 'rgba(255,255,255,0.6)',
-    }
+    inner: {
+      light: {
+        backgroundColor: 'white',
+      },
+      dark: {
+        backgroundColor: 'black',
+      },
+    },
   },
   nonActive: {
-    light: {
-      color: 'gray',
-      backgroundColor: 'rgba(0,0,0,0.6)',
+    outer: {
+      light: {
+        backgroundColor: 'rgba(0,0,0,0.6)',
+      },
+      dark: {
+        backgroundColor: 'rgba(255,255,255,0.6)',
+      },
     },
-    dark: {
-      color: 'silver',
-      backgroundColor: 'rgba(255,255,255,0.6)',
-    }
+    inner: {
+      light: {
+        backgroundColor: 'silver',
+      },
+      dark: {
+        backgroundColor: 'gray',
+      },
+    },
   },
 };
