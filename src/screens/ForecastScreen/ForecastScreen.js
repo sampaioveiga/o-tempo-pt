@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   ActivityIndicator,
   ImageBackground,
+  PanResponder,
   Text,
   useColorScheme,
   useWindowDimensions,
@@ -12,18 +13,23 @@ import styles, { ThemeColors } from './styles';
 
 import TodayComponent from '../../components/TodayComponent/TodayComponent';
 import NextDayComponent from '../../components/NextDayComponent/NextDayComponent';
+import ScreenIndicatorComponent from '../../components/ScreenIndicatorComponent/ScreeIndicatorComponent';
 import { fetchForecast } from '../../utils/fetchForecast';
 import { fetchImage } from '../../utils/fetchImage';
+import weatherDesc from '../../utils/weather-type-classe.json';
 
 // ----------------------------------------------------------------- main function
 export default function ForecastScreen(props) {
   const {
     locations,
+    activeLocation,
+    previousLocation,
+    nextLocation,
   } = props;
   const [ loading, setLoading ] = useState(true);
   const colorScheme = useColorScheme();
   const window = useWindowDimensions();
-  const location = locations[0];
+  const location = locations[activeLocation];
   const [ updateAt, setUpdateAt ] = useState({});
   const [ day0, setDay0 ] = useState({
     idWeatherType: 0,
@@ -32,7 +38,7 @@ export default function ForecastScreen(props) {
   const [ day2, setDay2 ] = useState({});
   const [ day3, setDay3 ] = useState({});
   const [ day4, setDay4 ] = useState({});
-  //const [ query, setQuery ] = useState('sem info');
+  const [ query, setQuery ] = useState('sem info');
   const [ photo, setPhoto ] = useState({
     photo: '',
     photographer: '',
@@ -55,13 +61,16 @@ export default function ForecastScreen(props) {
       }
     }
     fetchData();
-  }, [location]);
+  }, [activeLocation]);
 
+  // ----------------------------------------------------------------- fetch bgimage
   useEffect(() => {
+    const q = weatherDesc.data.filter(o => o.idWeatherType === day0.idWeatherType);
+    setQuery(q[0].descIdWeatherTypePT);
     const getImage = async () => {
       try {
-        //const { photo, photographer } = await fetchImage(query);
-        const { photo, photographer } = await fetchImage();
+        const { photo, photographer } = await fetchImage(query);
+        //const { photo, photographer } = await fetchImage();
         setPhoto({photo: photo, photographer: photographer});
       } catch (e) {
         console.log(e);
@@ -69,6 +78,21 @@ export default function ForecastScreen(props) {
     };
     getImage();
   }, [day0]);
+
+  // ----------------------------------------------------------------- touch input
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: (evt, gestureState) => true,
+    onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+
+    onPanResponderTerminationRequest: (evt, gestureState) => true,
+    onPanResponderRelease: (evt, gestureState) => {
+      if ( gestureState.dx < 100 ) {
+        nextLocation();
+      } else if ( gestureState.dx > 100) {
+        previousLocation();
+      }
+    },
+  });
 
   // ----------------------------------------------------------------- header component
   const header = (
@@ -82,14 +106,14 @@ export default function ForecastScreen(props) {
   // ----------------------------------------------------------------- footer component
   const footer = (
     <View style={styles.footer}>
-      <View style={ThemeColors.footer[colorScheme]}>
-        <Text style={ThemeColors.textColor[colorScheme]}>Pexels: {photo.photographer}</Text>
+      <View>
+        <Text style={[ styles.textBorder , ThemeColors.textColor[colorScheme]]}>Pexels: {photo.photographer}</Text>
       </View>
-      <View style={ThemeColors.footer[colorScheme]}>
-        <Text style={ThemeColors.textColor[colorScheme]}>{updateAt}</Text>
+      <View>
+        <Text style={[ styles.textBorder, ThemeColors.textColor[colorScheme]]}>{updateAt}</Text>
       </View>
     </View>
-  )
+  );
 
   // ----------------------------------------------------------------- App return
   if (loading) {
@@ -100,7 +124,7 @@ export default function ForecastScreen(props) {
     );
   } else {
   return(
-    <View style={styles.container}>
+    <View style={styles.container} {...panResponder.panHandlers}>
       <ImageBackground
         source={{ uri: photo.photo !== '' ? photo.photo : 'https://photos.app.goo.gl/uhhKASpXpoPu3tZp8' }}
         style={styles.imgBg}
@@ -110,7 +134,7 @@ export default function ForecastScreen(props) {
           {header}
         
           <TodayComponent
-            locationID={locations[0]}
+            locationID={locations[activeLocation]}
             day={day0}
             colorScheme={colorScheme}
             />
@@ -134,6 +158,12 @@ export default function ForecastScreen(props) {
               />
             
           </View>
+
+          <ScreenIndicatorComponent
+            numberLocations={(locations.length)}
+            activeLocation={activeLocation}
+            colorScheme={colorScheme}
+          />
         
           {footer}
 

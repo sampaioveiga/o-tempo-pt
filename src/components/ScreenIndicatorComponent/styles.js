@@ -2,39 +2,19 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   centeredView: {
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textBorder: {
-    textShadowRadius: 10, 
-    textShadowOffset: {width: 0, height: 0},
+  indicator: {
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
 export const ThemeColors = {
-  icon: {
-    light: {
-      color: 'white',
-      backgroundColor: 'rgba(0,0,0,0.6)',
-      borderRadius: 30,
-    },
-    dark: {
-      color: 'black',
-      backgroundColor: 'rgba(255,255,255,0.6)',
-      borderRadius: 30,
-    },
-  },
-  textColor: {
-    light: {
-      color: 'white',
-      textShadowColor: 'black',
-    },
-    dark: {
-      color: 'black',
-      textShadowColor: 'white',
-    },
-  },
-  smallTextColor: {
+  active: {
     light: {
       color: 'white',
       backgroundColor: 'rgba(0,0,0,0.6)',
@@ -42,6 +22,16 @@ export const ThemeColors = {
     dark: {
       color: 'black',
       backgroundColor: 'rgba(255,255,255,0.6)',
-    },
+    }
   },
-}
+  nonActive: {
+    light: {
+      color: 'gray',
+      backgroundColor: 'rgba(0,0,0,0.6)',
+    },
+    dark: {
+      color: 'silver',
+      backgroundColor: 'rgba(255,255,255,0.6)',
+    }
+  },
+};

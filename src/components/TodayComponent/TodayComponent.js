@@ -17,7 +17,7 @@ export default function TodayComponent(props) {
 
   return (
     <View style={[styles.centeredView, ThemeColors.container[colorScheme]]}>
-      <Text style={[ { fontSize: window.width*.2 }, ThemeColors.textColor[colorScheme]]}>{location[0]['local']}</Text>
+      <Text style={[ { fontSize: window.width*.2, }, styles.textBorder, ThemeColors.textColor[colorScheme]]}>{location[0]['local']}</Text>
       <View style={styles.rainContainer}>
         <WeatherIconComponent
           forecast={day['idWeatherType']}
@@ -27,8 +27,12 @@ export default function TodayComponent(props) {
         />
     
         <View style={styles.centeredView}>
-          <Text style={[{ fontSize: window.width*.12 }, ThemeColors.textColor[colorScheme]]}>{day['tMax']}°</Text>
-          <Text style={[{ fontSize: window.width*.12 }, ThemeColors.textColor[colorScheme]]}>{day['tMin']}°</Text>
+          <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+            <Text style={[{ fontSize: window.width*.12 }, ThemeColors.textColor[colorScheme]]}>{day['tMax']}°</Text>
+          </View>
+          <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+            <Text style={[{ fontSize: window.width*.12 }, ThemeColors.textColor[colorScheme]]}>{day['tMin']}°</Text>
+          </View>
         </View>
 
         <WindIconComponent
@@ -39,7 +43,6 @@ export default function TodayComponent(props) {
         />
         
       </View>
-      
       
     </View>
   );

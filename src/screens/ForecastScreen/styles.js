@@ -39,6 +39,10 @@ export default StyleSheet.create({
     alignItems: 'baseline',
     width: '80%',
   },
+  textBorder: {
+    textShadowRadius: 10, 
+    textShadowOffset: {width: 0, height: 0},
+  }
 });
 
 export const ThemeColors = {
@@ -54,20 +58,22 @@ export const ThemeColors = {
   },
   headerButton: {
     light: {
-      backgroundColor: 'rgba(0,0,0,0.4)',
+      backgroundColor: 'rgba(0,0,0,0.6)',
       color: 'white',
     },
     dark: {
-      backgroundColor: 'rgba(255,255,255,0.4)',
+      backgroundColor: 'rgba(255,255,255,0.6)',
       color: 'black',
     },
   },
   textColor: {
     light: {
       color: 'white',
+      textShadowColor: 'black',
     },
     dark: {
       color: 'black',
+      textShadowColor: 'white',
     },
   },
   footer: {

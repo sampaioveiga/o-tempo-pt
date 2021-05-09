@@ -5,7 +5,7 @@ export const fetchImage = async forecast => {
       'Authorization': apiKey
     });
     const response = await fetch(
-      `https://api.pexels.com/v1/curated`,
+      `https://api.pexels.com/v1/search?query=${forecast}&locale=pt-BR`,
       {
         headers: headers
       }
@@ -14,9 +14,10 @@ export const fetchImage = async forecast => {
     const rnd = Math.floor(Math.random() * photos.length);
 
     return { 
-      photo: photos[rnd].src.portrait,
+      photo: photos[rnd].src.large,
       photographer: photos[rnd].photographer,
     };
   };
 
 //`https://api.pexels.com/v1/search?query=${forecast}&per_page=1&locale=pt-BR`,
+//`https://api.pexels.com/v1/curated`,
