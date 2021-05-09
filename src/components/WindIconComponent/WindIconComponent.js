@@ -12,45 +12,37 @@ export default function WindIconComponent(props) {
   } = props;
 
   const noInfo = (
-    <View style={styles.centeredView}>
+    <View style={[styles.centeredView,]}>
       <MaterialCommunityIcons name="beaker-question" size={size} color={ThemeColors.icon[colorScheme].color} />
       <MaterialCommunityIcons name="beaker-question" size={size} color={ThemeColors.icon[colorScheme].color} />
     </View>
   );
 
   const weak = (
-    <View style={styles.centeredView}>
-      <MaterialCommunityIcons name="fan-speed-1" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
-        <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
-      </View>
+    <View style={[styles.centeredView,]}>
+      <MaterialCommunityIcons name="fan-speed-1" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
     </View>
   );
 
   const moderate = (
-    <View style={styles.centeredView}>
-      <MaterialCommunityIcons name="fan-speed-2" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
-        <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
-      </View>
+    <View style={[styles.centeredView,]}>
+      <MaterialCommunityIcons name="fan-speed-2" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
     </View>
   );
 
   const strong = (
-    <View style={styles.centeredView}>
-      <MaterialCommunityIcons name="fan-speed-3" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
-        <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
-      </View>
+    <View style={[styles.centeredView,]}>
+      <MaterialCommunityIcons name="fan-speed-3" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
     </View>
   );
 
   const veryStrong = (
-    <View style={styles.centeredView}>
-      <MaterialCommunityIcons name="fan-alert" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
-        <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
-      </View>
+    <View style={[styles.centeredView,]}>
+      <MaterialCommunityIcons name="fan-alert" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]}>{windDir}</Text>
     </View>
   );
 

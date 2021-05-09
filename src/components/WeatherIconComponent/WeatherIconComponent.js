@@ -12,117 +12,117 @@ export default function WeatherIconComponent(props) {
   } = props;
 
   const noInfo = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="beaker-question" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="beaker-question" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
     </View>
   );
 
   const clearSky = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-sunny" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-sunny" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
     </View>
   );
 
   const partlyCloudy = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-partly-cloudy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-partly-cloudy" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
     </View>
   );
 
   const cloudy = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-cloudy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-cloudy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
     </View>
   );
 
   const partlyRainy = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-partly-rainy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-partly-rainy" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
     </View>
   );
 
   const rainy = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-rainy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-rainy" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
     </View>
   );
 
   const pouring = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-pouring" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-pouring" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
     </View>
   );
 
   const hazy = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-hazy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-hazy" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
     </View>
   );
 
   const fog = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-fog" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-fog" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>      
     </View>
   );
 
   const snow = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-snowy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-snowy" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>      
     </View>
   );
 
   const lightning = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-lightning" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor}}>
+      <MaterialCommunityIcons name="weather-lightning" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>      
     </View>
   );
 
   const lightningRainy = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-lightning-rainy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-lightning-rainy" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>      
     </View>
   );
 
   const hail = (
-    <View style={{justifyContent: 'center', alignItems: 'center'}}>
-      <MaterialCommunityIcons name="weather-hail" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
-      <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>        
+    <View style={{justifyContent: 'center', alignItems: 'center',}}>
+      <MaterialCommunityIcons name="weather-hail" size={size} color={ThemeColors.icon[colorScheme].color} />
+      <View>        
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>      
     </View>

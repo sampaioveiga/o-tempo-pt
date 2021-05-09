@@ -16,7 +16,7 @@ export default function NextDayComponent(props) {
   return(
     <View style={[ styles.container,]}>
       <Text style={[ {fontSize: window.width*.09}, ThemeColors.textColor[colorScheme], styles.textBorder]}>{moment(day.forecastDate).format('ddd')}</Text>
-      <View style={ styles.icons }>
+      <View style={ [styles.icons, {backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}] }>
 
         <WeatherIconComponent
           forecast={day['idWeatherType']}
@@ -31,13 +31,12 @@ export default function NextDayComponent(props) {
           size={window.width*.04}
         />*/}
         
-        <View style={styles.centeredView}>
-          <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+        <View style={[styles.centeredView,]}>
+          
           <Text style={[ {fontSize: window.width*.05, }, ThemeColors.textColor[colorScheme], ]}>{day.tMax}°</Text>
-          </View>
-          <View style={{backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}}>
+          
           <Text style={[ {fontSize: window.width*.05}, ThemeColors.textColor[colorScheme], ]}>{day.tMin}°</Text>
-          </View>
+          
         </View>
 
       </View>      
