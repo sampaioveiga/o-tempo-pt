@@ -4,6 +4,7 @@ import {
   ImageBackground,
   PanResponder,
   Text,
+  TouchableOpacity,
   useColorScheme,
   useWindowDimensions,
   View
@@ -25,6 +26,7 @@ export default function ForecastScreen(props) {
     activeLocation,
     previousLocation,
     nextLocation,
+    openSettings,
   } = props;
   const [ loading, setLoading ] = useState(true);
   const colorScheme = useColorScheme();
@@ -32,7 +34,7 @@ export default function ForecastScreen(props) {
   const location = locations[activeLocation];
   const [ updateAt, setUpdateAt ] = useState({});
   const [ day0, setDay0 ] = useState({
-    idWeatherType: 0,
+    idWeatherType: 1,
   });
   const [ day1, setDay1 ] = useState({});
   const [ day2, setDay2 ] = useState({});
@@ -45,7 +47,7 @@ export default function ForecastScreen(props) {
   });
 
   // ----------------------------------------------------------------- fetch Forecast for location
-  useEffect(() => {
+  useEffect(() => { 
     const fetchData = async () => {
       try {
         const response = await fetchForecast(location);
@@ -65,6 +67,7 @@ export default function ForecastScreen(props) {
 
   // ----------------------------------------------------------------- fetch bgimage
   useEffect(() => {
+    if (day0 == undefined ) return;
     const q = weatherDesc.data.filter(o => o.idWeatherType === day0.idWeatherType);
     setQuery(q[0].descIdWeatherTypePT);
     const getImage = async () => {
@@ -97,9 +100,12 @@ export default function ForecastScreen(props) {
   // ----------------------------------------------------------------- header component
   const header = (
     <View style={styles.headerContainer}>
-      <View style={[styles.headerButton, ThemeColors.headerButton[colorScheme]]}>
+      <TouchableOpacity
+        onPress={openSettings}
+        style={[styles.headerButton, ThemeColors.headerButton[colorScheme]]}
+        >
         <MaterialCommunityIcons name="cog" size={window.width*.1} color={ThemeColors.headerButton[colorScheme].color} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 

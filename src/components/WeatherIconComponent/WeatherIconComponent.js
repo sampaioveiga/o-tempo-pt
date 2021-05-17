@@ -40,7 +40,7 @@ export default function WeatherIconComponent(props) {
 
   const cloudy = (
     <View style={{justifyContent: 'center', alignItems: 'center',}}>
-      <MaterialCommunityIcons name="weather-cloudy" size={size} color={ThemeColors.icon[colorScheme].color} style={ThemeColors.icon[colorScheme]} />
+      <MaterialCommunityIcons name="weather-cloudy" size={size} color={ThemeColors.icon[colorScheme].color} />
       <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>
       </View>
@@ -102,7 +102,7 @@ export default function WeatherIconComponent(props) {
   );
 
   const lightning = (
-    <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor}}>
+    <View style={{justifyContent: 'center', alignItems: 'center', }}>
       <MaterialCommunityIcons name="weather-lightning" size={size} color={ThemeColors.icon[colorScheme].color} />
       <View>
         <Text style={[ ThemeColors.textColor[colorScheme], {fontSize: size*.5}]} >{rainChance}%</Text>

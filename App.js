@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 import Constants from 'expo-constants';
 import * as SecureStore from 'expo-secure-store';
 
-import ForecastScreen from './src/screens/ForecastScreen/ForecastScreen';
+import {
+  ForecastScreen,
+  SettingsScreen,
+} from './src/screens';
+
 
 export default function App() {
+  const [ settingsVisible, setSettingsVisible ] = useState(false);
   const [ locations, setLocations ] = useState([
     1030300,
     1040200,
@@ -25,15 +30,28 @@ export default function App() {
     setActiveLocation(activeLocation + 1);
   };
 
+  const toggleSettings = () => {
+    settingsVisible ? setSettingsVisible(false) : setSettingsVisible(true);
+  };
+
   // ----------------------------------------------------------------- main return
   return(
     <View style={styles.container}>
-      <ForecastScreen
-        locations={locations}
-        activeLocation={activeLocation}
-        previousLocation={previousLocationHandler}
-        nextLocation={nextLocationHandler}
-        />
+      {
+        settingsVisible ?
+          <SettingsScreen
+            locations={locations}
+            closeSettings={toggleSettings}
+          />
+        :
+          <ForecastScreen
+            locations={locations}
+            activeLocation={activeLocation}
+            previousLocation={previousLocationHandler}
+            nextLocation={nextLocationHandler}
+            openSettings={toggleSettings}
+          />
+      }
     </View>
   );
 };
