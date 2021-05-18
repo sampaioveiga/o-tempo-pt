@@ -10,7 +10,7 @@ import {
 
 
 export default function App() {
-  const [ settingsVisible, setSettingsVisible ] = useState(false);
+  const [ settingsVisible, setSettingsVisible ] = useState(true);
   const [ locations, setLocations ] = useState([
     1030300,
     1040200,
@@ -26,7 +26,7 @@ export default function App() {
 
   // ----------------------------------------------------------------- next location handler
   const nextLocationHandler = () => {
-    if ( activeLocation === locations.length -1 ) { return; }
+    if ( activeLocation === locations.length - 1 ) { return; }
     setActiveLocation(activeLocation + 1);
   };
 

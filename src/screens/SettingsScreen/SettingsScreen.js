@@ -11,8 +11,14 @@ import {
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import styles, { ThemeColors } from './styles';
 
-import district_Islands from '../../utils/districts_islands.json';
+import districts_islands from '../../utils/districts_islands.json';
 
+// ----------------------------------------------------------------- item component
+const Item = ({ item, onPress, style }) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
+    <Text style={styles.title}>{item.local}</Text>
+  </TouchableOpacity>
+);
 
 // ----------------------------------------------------------------- main function
 export default function SettingsScreen(props) {
@@ -22,7 +28,8 @@ export default function SettingsScreen(props) {
   } = props;
   const colorScheme = useColorScheme();
   const window = useWindowDimensions();
-
+  const data = districts_islands.data;
+  const [selectedId, setSelectedId] = useState(null);
 
   // ----------------------------------------------------------------- header component
   const header = (
@@ -39,25 +46,24 @@ export default function SettingsScreen(props) {
     </View>
   );
 
-  // ----------------------------------------------------------------- item component
-  const Item = ({ title }) => (
-    <View>
-      <Text>{title}</Text>
-    </View>
-  );
-
   // ----------------------------------------------------------------- flatlist item component
-  const renderItem = ({ item }) => <Item title={item} />;
+  const renderItem = ({ item }) => {
+    const backgroundColor = item.local === selectedId ? '#6e3b6e' : '#f9c2ff';
+
+    return <Item item={item} onPress={() => setSelectedId(item.local)} style={{ backgroundColor }} />;
+  };
 
   // ----------------------------------------------------------------- main function
   return (
     <SafeAreaView style={[styles.container, ThemeColors.container[colorScheme]]}>
+      
       {header}
       
       <FlatList
-        data={locations}
+        data={data}
         renderItem={renderItem}
-        keyExtractor={item => item}
+        keyExtractor={item => item.local}
+        extraData={selectedId}
         />
 
     </SafeAreaView>

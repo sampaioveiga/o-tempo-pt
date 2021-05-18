@@ -57,7 +57,7 @@ export default function ForecastScreen(props) {
         setDay3(response.data[3]);
         setDay4(response.data[4]);
         setUpdateAt(response.dataUpdate);
-        setLoading(false);
+//        setLoading(false);
       } catch (e) {
         console.log(e);
       }
@@ -75,6 +75,7 @@ export default function ForecastScreen(props) {
         const { photo, photographer } = await fetchImage(query);
         //const { photo, photographer } = await fetchImage();
         setPhoto({photo: photo, photographer: photographer});
+        setLoading(false);
       } catch (e) {
         console.log(e);
       }
@@ -89,9 +90,11 @@ export default function ForecastScreen(props) {
 
     onPanResponderTerminationRequest: (evt, gestureState) => true,
     onPanResponderRelease: (evt, gestureState) => {
-      if ( gestureState.dx < 100 ) {
+      if ( gestureState.dx < 200 && activeLocation < locations.length - 1 ) {
+        setLoading(true);
         nextLocation();
-      } else if ( gestureState.dx > 100) {
+      } else if ( gestureState.dx > 200 && activeLocation > 0 ) {
+        setLoading(true);
         previousLocation();
       }
     },
@@ -130,7 +133,7 @@ export default function ForecastScreen(props) {
     );
   } else {
   return(
-    <View style={styles.container} {...panResponder.panHandlers}>
+    <View style={styles.container}>
       <ImageBackground
         source={{ uri: photo.photo !== '' ? photo.photo : 'https://photos.app.goo.gl/uhhKASpXpoPu3tZp8' }}
         style={styles.imgBg}
@@ -139,13 +142,15 @@ export default function ForecastScreen(props) {
         
           {header}
         
-          <TodayComponent
-            locationID={locations[activeLocation]}
-            day={day0}
-            colorScheme={colorScheme}
-            />
+          <View {...panResponder.panHandlers}>
+            <TodayComponent
+              locationID={locations[activeLocation]}
+              day={day0}
+              colorScheme={colorScheme}
+              />
+          </View>
 
-          <View style={styles.nextDaysContainer}>
+          <View style={styles.nextDaysContainer} {...panResponder.panHandlers}>
             <NextDayComponent
               day={day1}
               colorScheme={colorScheme}
@@ -161,8 +166,7 @@ export default function ForecastScreen(props) {
             <NextDayComponent
               day={day4}
               colorScheme={colorScheme}
-              />
-            
+              />            
           </View>
 
           <ScreenIndicatorComponent
