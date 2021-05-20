@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   FlatList,
   SafeAreaView,
+  Switch,
   Text,
   TouchableOpacity,
   useColorScheme,
@@ -14,22 +15,40 @@ import styles, { ThemeColors } from './styles';
 import districts_islands from '../../utils/districts_islands.json';
 
 // ----------------------------------------------------------------- item component
-const Item = ({ item, onPress, style }) => (
-  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-    <Text style={styles.title}>{item.local}</Text>
-  </TouchableOpacity>
+const ItemRenderer = ({ index, label, selected, onUpdateValue, localId }) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{label}</Text>
+    <Switch value={selected} onValueChange={(value) => onUpdateValue(index, value, localId)} />
+  </View>
 );
 
 // ----------------------------------------------------------------- main function
 export default function SettingsScreen(props) {
   const {
     locations,
+    addItemToLocations,
+    removeItemFromLocations,
     closeSettings,
   } = props;
+  const [ allData, setAllData ] = useState(districts_islands.data);
   const colorScheme = useColorScheme();
   const window = useWindowDimensions();
-  const data = districts_islands.data;
-  const [selectedId, setSelectedId] = useState(null);
+
+  // ----------------------------------------------------------------- activate switch on selected locations
+  useEffect(() => {
+    if (locations.length === 0) return;
+    locations.forEach(local => {
+      const index = allData.findIndex(item => item.globalIdLocal === local);
+      allData[index].selected = true;
+    });
+  }, [locations]);
+
+  // ----------------------------------------------------------------- update switch
+  onUpdateValue = (index, value, localId) => {
+    if (locations.length <= 1 && !value) return;
+    allData[index].selected = value;
+    value ? addItemToLocations(localId) : removeItemFromLocations(localId);
+  }
 
   // ----------------------------------------------------------------- header component
   const header = (
@@ -47,23 +66,20 @@ export default function SettingsScreen(props) {
   );
 
   // ----------------------------------------------------------------- flatlist item component
-  const renderItem = ({ item }) => {
-    const backgroundColor = item.local === selectedId ? '#6e3b6e' : '#f9c2ff';
-
-    return <Item item={item} onPress={() => setSelectedId(item.local)} style={{ backgroundColor }} />;
-  };
+  renderItem = ({ item, index }) => (
+    <ItemRenderer key={index} index={index} selected={item.selected} label={item.local} onUpdateValue={onUpdateValue} localId={item.globalIdLocal} />
+  )
 
   // ----------------------------------------------------------------- main function
   return (
-    <SafeAreaView style={[styles.container, ThemeColors.container[colorScheme]]}>
-      
+    <SafeAreaView style={[styles.container,]}>
+
       {header}
       
       <FlatList
-        data={data}
+        data={allData}
         renderItem={renderItem}
         keyExtractor={item => item.local}
-        extraData={selectedId}
         />
 
     </SafeAreaView>

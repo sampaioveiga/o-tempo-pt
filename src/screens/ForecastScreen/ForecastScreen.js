@@ -90,10 +90,10 @@ export default function ForecastScreen(props) {
 
     onPanResponderTerminationRequest: (evt, gestureState) => true,
     onPanResponderRelease: (evt, gestureState) => {
-      if ( gestureState.dx < 200 && activeLocation < locations.length - 1 ) {
+      if ( gestureState.dx < 100 && activeLocation < locations.length - 1 ) {
         setLoading(true);
         nextLocation();
-      } else if ( gestureState.dx > 200 && activeLocation > 0 ) {
+      } else if ( gestureState.dx > 100 && activeLocation > 0 ) {
         setLoading(true);
         previousLocation();
       }
@@ -142,7 +142,7 @@ export default function ForecastScreen(props) {
         
           {header}
         
-          <View {...panResponder.panHandlers}>
+          <View style={{width: '90%'}} {...panResponder.panHandlers}>
             <TodayComponent
               locationID={locations[activeLocation]}
               day={day0}

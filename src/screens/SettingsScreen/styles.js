@@ -28,14 +28,16 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   item: {
-    marginVertical: 8,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    
+    justifyContent: 'space-between',
+    padding: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: '#CCCCCC55'
   },
   title: {
     fontSize: 20,
+    textTransform: 'capitalize',
   },
 });
 
