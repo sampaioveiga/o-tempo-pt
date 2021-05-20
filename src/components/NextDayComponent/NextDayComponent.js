@@ -3,7 +3,6 @@ import { Text, useWindowDimensions, View } from 'react-native';
 import styles, { ThemeColors } from './styles';
 import moment from 'moment/min/moment-with-locales';
 import WeatherIconComponent from '../WeatherIconComponent/WeatherIconComponent';
-import WindIconComponent from '../WindIconComponent/WindIconComponent';
 
 export default function NextDayComponent(props) {
   const {
@@ -24,12 +23,6 @@ export default function NextDayComponent(props) {
           colorScheme={colorScheme}
           size={window.width*.08}
           />
-        
-        {/*<WindIconComponent
-          forecast={day['classWindSpeed']}
-          colorScheme={colorScheme}
-          size={window.width*.04}
-        />*/}
         
         <View style={[styles.centeredView,]}>
           

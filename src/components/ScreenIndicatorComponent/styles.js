@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   centeredView: {
@@ -7,9 +10,17 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   indicator: {
-    borderRadius: 30,
+    borderRadius: windowWidth*.1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  indicatorOuter: {
+    width: windowWidth*.035,
+    height: windowWidth*.035,
+  },
+  indicatorInner: {
+    width: windowWidth*.03,
+    height: windowWidth*.03,
   },
 });
 

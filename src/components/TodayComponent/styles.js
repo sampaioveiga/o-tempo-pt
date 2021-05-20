@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   centeredView: {
@@ -9,10 +12,10 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    width: '70%',
+    width: windowWidth*.7,
   },
   textBorder: {
-    textShadowRadius: 10, 
+    textShadowRadius: windowWidth*.01,
     textShadowOffset: {width: 0, height: 0},
   }
 });

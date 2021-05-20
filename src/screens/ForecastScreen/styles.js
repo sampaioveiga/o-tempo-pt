@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   container: {
@@ -16,31 +19,34 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   headerContainer: {
-    paddingTop: '2%',
+    paddingTop: windowHeight*.01,
     alignItems: 'flex-end',
-    width: '90%',
+    width: windowWidth*.9,
   },
   headerButton: {
     backgroundColor: 'black',
-    borderRadius: 20,
+    borderRadius: windowWidth*.1,
     padding: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  todayContainer: {
+    width: windowWidth,
   },
   nextDaysContainer: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    width: '100%',
+    width: windowWidth,
   },
   footer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'baseline',
-    width: '80%',
+    width: windowWidth,
   },
   textBorder: {
-    textShadowRadius: 10, 
+    textShadowRadius: windowWidth*.01,
     textShadowOffset: {width: 0, height: 0},
   }
 });

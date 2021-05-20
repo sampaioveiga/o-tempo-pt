@@ -57,7 +57,6 @@ export default function ForecastScreen(props) {
         setDay3(response.data[3]);
         setDay4(response.data[4]);
         setUpdateAt(response.dataUpdate);
-//        setLoading(false);
       } catch (e) {
         console.log(e);
       }
@@ -142,7 +141,7 @@ export default function ForecastScreen(props) {
         
           {header}
         
-          <View style={{width: '90%'}} {...panResponder.panHandlers}>
+          <View style={styles.todayContainer} {...panResponder.panHandlers}>
             <TodayComponent
               locationID={locations[activeLocation]}
               day={day0}
