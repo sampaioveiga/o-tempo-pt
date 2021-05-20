@@ -10,7 +10,7 @@ import {
 
 export default function App() {
   const [ settingsVisible, setSettingsVisible ] = useState(false);
-  const [ locations, setLocations ] = useState([]);
+  const [ locations, setLocations ] = useState([1010500]);
   const [ activeLocation, setActiveLocation ] = useState(0);
 
   // ----------------------------------------------------------------- save locations to store
