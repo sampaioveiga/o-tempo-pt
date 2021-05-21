@@ -17,6 +17,7 @@ export default StyleSheet.create({
   indicatorOuter: {
     width: windowWidth*.035,
     height: windowWidth*.035,
+    marginHorizontal: windowWidth*.01
   },
   indicatorInner: {
     width: windowWidth*.03,

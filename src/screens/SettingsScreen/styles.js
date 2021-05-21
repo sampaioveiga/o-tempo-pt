@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   container: {
@@ -8,21 +11,20 @@ export default StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    height: '10%',
-    width: '100%',
+    height: windowHeight*.09,
+    width: windowWidth,
     elevation: 5,
     borderBottomWidth: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: '5%',
-    marginBottom: '3%',
+    paddingHorizontal: windowWidth*.05,
   },
   headerText: {
-    fontSize: 30,
+    fontSize: windowWidth*.1,
   },
   headerButton: {
     backgroundColor: 'black',
-    borderRadius: 20,
+    borderRadius: windowWidth*1,
     padding: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -33,10 +35,11 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     padding: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#CCCCCC55'
+    borderBottomColor: '#CCCCCC55',
+    width: windowWidth*.95,
   },
   title: {
-    fontSize: 20,
+    fontSize: windowWidth*.07,
     textTransform: 'capitalize',
   },
 });
@@ -44,15 +47,15 @@ export default StyleSheet.create({
 export const ThemeColors = {
   container: {
     light: {
-      backgroundColor: 'white',
+      backgroundColor: '#eee',
     },
     dark: {
-      backgroundColor: 'black',
+      backgroundColor: '#111',
     },
   },
   header: {
     light: {
-      backgroundColor: 'blue',
+      backgroundColor: '#eee',
       borderColor: '#333',
     },
     dark: {
@@ -80,10 +83,10 @@ export const ThemeColors = {
   },
   item: {
     light: {
-      backgroundColor: 'silver',
+      backgroundColor: '#eee',
     },
     dark: {
-      backgroundColor: 'gray',
+      backgroundColor: '#111',
     },
   },
   title: {

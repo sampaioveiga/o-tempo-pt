@@ -15,9 +15,9 @@ import styles, { ThemeColors } from './styles';
 import districts_islands from '../../utils/districts_islands.json';
 
 // ----------------------------------------------------------------- item component
-const ItemRenderer = ({ index, label, selected, onUpdateValue, localId }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{label}</Text>
+const ItemRenderer = ({ index, label, selected, onUpdateValue, localId, colorScheme }) => (
+  <View style={[styles.item, ThemeColors.item[colorScheme]]}>
+    <Text style={[styles.title, ThemeColors.title[colorScheme]]}>{label}</Text>
     <Switch value={selected} onValueChange={(value) => onUpdateValue(index, value, localId)} />
   </View>
 );
@@ -54,7 +54,7 @@ export default function SettingsScreen(props) {
   const header = (
     <View style={[styles.header, ThemeColors.header[colorScheme]]}>
       <View>
-        <Text style={ThemeColors.headerText[colorScheme]}>Meteo</Text>
+        <Text style={ [styles.headerText, ThemeColors.headerText[colorScheme]]}>O Tempo PT</Text>
       </View>
       <TouchableOpacity
         onPress={closeSettings}
@@ -67,12 +67,12 @@ export default function SettingsScreen(props) {
 
   // ----------------------------------------------------------------- flatlist item component
   renderItem = ({ item, index }) => (
-    <ItemRenderer key={index} index={index} selected={item.selected} label={item.local} onUpdateValue={onUpdateValue} localId={item.globalIdLocal} />
+    <ItemRenderer key={index} index={index} selected={item.selected} label={item.local} onUpdateValue={onUpdateValue} localId={item.globalIdLocal} colorScheme={colorScheme} />
   )
 
   // ----------------------------------------------------------------- main function
   return (
-    <SafeAreaView style={[styles.container,]}>
+    <SafeAreaView style={[styles.container, ThemeColors.container[colorScheme]]}>
 
       {header}
       
