@@ -17,7 +17,7 @@ export default function TodayComponent(props) {
 
   return (
     <View style={[styles.centeredView, ThemeColors.container[colorScheme]]}>
-      <Text style={[ { fontSize: window.width*.2, }, styles.textBorder, ThemeColors.textColor[colorScheme]]}>{location[0]['local']}</Text>
+      <Text style={[ { fontSize: window.width*.2, textAlign: 'center'}, styles.textBorder, ThemeColors.textColor[colorScheme]]}>{location[0]['local']}</Text>
       <View style={[styles.rainContainer, {backgroundColor: ThemeColors.smallTextColor[colorScheme].backgroundColor, borderRadius: 10}]}>
         <WeatherIconComponent
           forecast={day['idWeatherType']}

@@ -69,7 +69,10 @@ export default function App() {
 
   // ----------------------------------------------------------------- open/close settings screen
   const toggleSettings = () => {
-    if (settingsVisible) remember();
+    if (settingsVisible) {
+      remember();
+      setActiveLocation(0);
+    };
     settingsVisible ? setSettingsVisible(false) : setSettingsVisible(true);
   };
 
