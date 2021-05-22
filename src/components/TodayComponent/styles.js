@@ -14,10 +14,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: windowWidth*.7,
   },
-  textBorder: {
+  textStyle: {
+    textAlign: 'center',
+    fontSize: windowWidth*.2,
     textShadowRadius: windowWidth*.01,
     textShadowOffset: {width: 0, height: 0},
-  }
+  },
 });
 
 export const ThemeColors = {

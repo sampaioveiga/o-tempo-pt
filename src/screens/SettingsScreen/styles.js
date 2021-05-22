@@ -40,7 +40,6 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: windowWidth*.07,
-    textTransform: 'capitalize',
   },
 });
 
